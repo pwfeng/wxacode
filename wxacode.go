@@ -34,12 +34,11 @@ func (a *Api) Code2Session(code string) (*AuthInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	_ = resp.Body.Close()
-
 	bs, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
+	_ = resp.Body.Close()
 
 	result := &struct {
 		SessionKey string `json:"session_key"`
